@@ -70,14 +70,18 @@ export class BaMenuService {
 
   protected _convertArrayToItems(routes:any[], parent?:any):any[] {
     let items = [];
+    let arr = ["dashboard", "pages"];
     routes.forEach((route) => {
-      items.push(this._convertObjectToItem(route, parent));
+      debugger;
+      // if(arr.includes(route.path))
+        items.push(this._convertObjectToItem(route, parent));
     });
     return items;
   }
 
   protected _convertObjectToItem(object, parent?:any):any {
     let item:any = {};
+    debugger;
     if (object.data && object.data.menu) {
       // this is a menu object
       item = object.data.menu;

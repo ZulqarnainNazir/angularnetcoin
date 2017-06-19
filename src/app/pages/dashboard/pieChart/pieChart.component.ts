@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-
+import {BaThemeConfigProvider, colorHelper} from '../../../theme';
 import {PieChartService} from './pieChart.service';
 
 import 'easy-pie-chart/dist/jquery.easypiechart.js';
@@ -14,9 +14,46 @@ export class PieChart {
 
   public charts: Array<Object>;
   private _init = false;
+  private totalUsers: Number = 0;
+  private totalTickets: Number = 0;
+  private activeTickets: Number = 0;    
+  
 
-  constructor(private _pieChartService: PieChartService) {
-    this.charts = this._pieChartService.getData();
+  constructor(private _pieChartService: PieChartService, private _baConfig: BaThemeConfigProvider) {
+    let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
+      this.charts = [
+      {
+        color: pieColor,
+        description: 'Total Users',
+        stats: this.totalUsers,
+        icon: 'person',
+      }, {
+        color: pieColor,
+        description: 'Profit',
+        stats: '$ 89,745',
+        icon: 'money',
+      }, {
+        color: pieColor,
+        description: 'Total Tickets',
+        stats: this.totalTickets,
+        icon: 'face',
+      }, {
+        color: pieColor,
+        description: 'Active Tickets',
+        stats: '32,592',
+        icon: 'refresh',
+      },
+    ];
+    
+    this._pieChartService.getTotalTickets().then((res) => {
+      this.totalTickets = res.total_tickets;
+    });
+    this._pieChartService.getData().then((res) => {
+      this.totalUsers = res.users;
+    });
+    this._pieChartService.getTotalActiveTickets().then((res) => {
+      this.activeTickets = res.active_tickets;
+    });
   }
 
   ngAfterViewInit() {

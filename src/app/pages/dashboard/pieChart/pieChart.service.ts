@@ -1,36 +1,45 @@
 import {Injectable} from '@angular/core';
 import {BaThemeConfigProvider, colorHelper} from '../../../theme';
 
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+
+import { Headers, RequestOptions } from '@angular/http';
+
+
 @Injectable()
 export class PieChartService {
-
-  constructor(private _baConfig:BaThemeConfigProvider) {
+  constructor(private _baConfig: BaThemeConfigProvider, private _http: Http) {
   }
 
   getData() {
-    let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
-    return [
-      {
-        color: pieColor,
-        description: 'dashboard.new_visits',
-        stats: '57,820',
-        icon: 'person',
-      }, {
-        color: pieColor,
-        description: 'dashboard.purchases',
-        stats: '$ 89,745',
-        icon: 'money',
-      }, {
-        color: pieColor,
-        description: 'dashboard.active_users',
-        stats: '178,391',
-        icon: 'face',
-      }, {
-        color: pieColor,
-        description: 'dashboard.returned',
-        stats: '32,592',
-        icon: 'refresh',
-      }
-    ];
+    let headers: any;
+    headers  = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    return this._http.post('https://netplay.herokuapp.com/api/users/total', {})
+            .toPromise()
+            .then(res => res.json());
+  }
+
+  getTotalTickets() {
+    let headers: any;
+    headers  = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    return this._http.post('https://netplay.herokuapp.com/api/ticket/total/all', {})
+            .toPromise()
+            .then(res => res.json());
+  }
+
+  getTotalActiveTickets() {
+    let headers: any;
+    headers  = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    return this._http.post('https://netplay.herokuapp.com/api/ticket/total/active', {})
+            .toPromise()
+            .then(res => res.json());
   }
 }
