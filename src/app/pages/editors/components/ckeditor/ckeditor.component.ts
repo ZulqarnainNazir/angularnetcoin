@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {UserService} from './user.service';
 
 import './ckeditor.loader';
 import 'ckeditor';
@@ -10,12 +11,12 @@ import 'ckeditor';
 })
 
 export class Ckeditor {
-  public ckeditorContent:string = '<p>Hello CKEditor</p>';
-  public config = {
-    uiColor: '#F0F3F4',
-    height: '600',
-  };
-
-  constructor() {
+  public count: Number = 0; 
+  public users: any = [];
+  constructor(private _user: UserService) {
+    this._user.getUser().then((res) => {
+      debugger;
+      this.users = res.users;
+    });
   }
 }
