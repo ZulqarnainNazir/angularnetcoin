@@ -14,7 +14,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm start",
     "postinstall": "ng build --aot -prod",
     "rimraf": "rimraf",
     "changelog": "standard-changelog",
