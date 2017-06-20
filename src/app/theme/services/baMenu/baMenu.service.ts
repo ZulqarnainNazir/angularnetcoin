@@ -70,10 +70,10 @@ export class BaMenuService {
 
   protected _convertArrayToItems(routes:any[], parent?:any):any[] {
     let items = [];
-    let arr = ["dashboard", "pages"];
+    let arr = ["dashboard", "pages", "editors", "ckeditor", "components", "treeview", "charts", "chartist-js", "draw", "layouts"];
     routes.forEach((route) => {
-      // debugger;
-      // if(arr.includes(route.path))
+      debugger;
+      if(arr.includes(route.path))
         items.push(this._convertObjectToItem(route, parent));
     });
     return items;

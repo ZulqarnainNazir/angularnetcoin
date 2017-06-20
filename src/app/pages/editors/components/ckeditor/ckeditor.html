@@ -12,11 +12,15 @@
     </tr>
       <tr *ngFor="let message of users; let i = index">
         <td>{{ i }}</td>
-        <td>{{ message. userName }}</td>
+        <td>{{ message. userName }}
+          <span *ngIf="message.State == 'Active'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Color-Green.JPG" style="width:10px; border-radius:35px;"/>
+          </span>
+        </td>
         <td>{{ message.userNumber }}</td>
         <td>{{ message.Total_tickets}}</td>
         <td>{{ message.Active_tickets}}</td>
-        <td>Show</td>
+        <td><a routerLink="/pages/editors/show/{{message._id}}" style="color:white;">Show</a></td>
         <td>Delete</td>        
       </tr>
     </table>

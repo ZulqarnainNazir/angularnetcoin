@@ -143,7 +143,7 @@ export const PAGES_MENU = [
         ]
       },
       {
-        path: 'forms',
+        path: 'draw',
         data: {
           menu: {
             title: 'general.menu.form_elements',

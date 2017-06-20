@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: Forms,
     children: [
-      { path: 'inputs', component: Inputs },
+      { path: 'draw', component: Inputs },
       { path: 'layouts', component: Layouts }
     ]
   }

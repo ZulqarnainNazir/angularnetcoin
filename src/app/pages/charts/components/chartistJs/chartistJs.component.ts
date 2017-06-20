@@ -9,17 +9,21 @@ import {ChartistJsService} from './chartistJs.service';
 })
 
 export class ChartistJs {
-
-  data:any;
-
-  constructor(private _chartistJsService:ChartistJsService) {
+  public count: Number = 0; 
+  public users: any = [];
+  
+  constructor(private _user: ChartistJsService) {
+    this._user.getAll().then((res) => {
+      debugger;
+      this.users = res.Message;
+    });
   }
 
   ngOnInit() {
-    this.data = this._chartistJsService.getAll();
+    // this.data = this._chartistJsService.getAll();
   }
 
-  getResponsive(padding, offset) {
-    return this._chartistJsService.getResponsive(padding, offset);
-  }
+  // getResponsive(padding, offset) {
+  //   return this._chartistJsService.getResponsive(padding, offset);
+  // }
 }

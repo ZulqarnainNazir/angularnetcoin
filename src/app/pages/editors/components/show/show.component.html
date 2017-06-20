@@ -1,0 +1,105 @@
+<!--<a routerLink="/pages/editors/ckeditor"><button value="">Back</button></a>-->
+<hr class="">
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+             <h1 class="">{{ user.userName }}</h1>
+             <h5 class="">{{ user.userNumber }}</h5>
+             <h5 class="">{{ user.Email }}</h5>
+        </div>
+      <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="{{ user.Picture_url }}"></a>
+
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-hover col-sm-10">
+          <tr>
+            <th>
+              Total Tickets
+            </th>
+            <th>
+              Active Tickets
+            </th>
+            <th>
+              Total Credit
+            </th>
+             <th>
+              Total Ad View
+            </th>
+            <th>
+              Total Banner Credit
+            </th>
+             <th>
+              Total Image Credit
+            </th>
+             <th>
+              Total Video Credit
+            </th>
+             <th>
+              Total Transactions
+            </th>
+          </tr>
+          <tr>
+            <th>
+              {{ user.Total_tickets }}
+            </th>
+            <th>
+               {{ user.Active_tickets }}
+            </th>
+            <th>
+              {{ user.Total_credit }}
+            </th>
+             <th>
+              {{ user.Ad_view.length }}
+            </th>
+            <th>
+              {{ user.Credit_banner_ad }}
+            </th>
+             <th>
+              {{ user.Credit_image_ad }}
+            </th>
+             <th>
+              {{ user.Credit_video_ad }}
+            </th>
+             <th>
+              {{ user.Total_transactions }}
+            </th>
+          </tr>
+        </table>
+    </div>
+    <hr/>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <h3 style="margin-left: 20px;">Transactions History</h3>      
+      <table class="table">
+        <tr>
+          <th>Previous Balance</th>
+          <th>Transaction Amount</th>
+          <th>Transaction</th>
+          <th>Date</th>
+        </tr>
+         <tr *ngFor="let message of user.Transactions; let i = index">
+          <td>{{ message.Prevbalance }}</td>
+          <td>{{ message.Amount }}</td>
+          <td>{{ message.Transaction }}</td>
+          <td>{{ message.Date.toString().split("T")[0] }}</td>                              
+        </tr>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <h3 style="margin-left: 20px;">Ad View History</h3>      
+      <table class="table">
+        <tr>
+          <th>Sponsor Name</th>
+          <th>Ad Type</th>
+          <th>Total Earn</th>                    
+        </tr>
+       <tr *ngFor="let message of user.Ad_view; let i = index">
+          <td>{{ message.Sponsor_Name }}</td>
+          <td>{{ message.Ad_type }}</td>
+          <td>{{ message.Total_Earn }}</td>                              
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

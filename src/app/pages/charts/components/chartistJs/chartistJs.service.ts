@@ -1,4 +1,10 @@
 import {Injectable} from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+
+import { Headers, RequestOptions } from '@angular/http';
+
 
 import {BaThemeConfigProvider} from '../../../../theme';
 
@@ -170,11 +176,17 @@ export class ChartistJsService {
     }
   };
 
-  constructor(private _baConfig:BaThemeConfigProvider) {
+  constructor(private _http: Http, private _baConfig:BaThemeConfigProvider) {
   }
 
   public getAll() {
-    return this._data;
+    let headers: any;
+    headers  = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    return this._http.post('https://netplay.herokuapp.com/api/ad/all', {})
+            .toPromise()
+            .then(res => res.json());
   }
 
   public getResponsive(padding, offset) {

@@ -1,5 +1,31 @@
-<div class="col-md-6">
-  <ba-card title="tree_view.title">
-    <tree id="tree-view" [tree]="tree"></tree>
-  </ba-card>
-</div>
+<!--<div class="col-md-6">-->
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+    <tr>
+      <th>Sr #</th>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Total Credit</th>
+      <th>Total Ad view</th>
+      <th>Banner Ad Credit</th>
+      <th>Image Ad Credit</th>
+      <th>Video Ad Credit</th>      
+      <th>Show</th>      
+            
+    </tr>
+      <tr *ngFor="let message of users; let i = index">
+        <td>{{ i }}</td>
+        <td>{{ message.userName }}</td>
+        <td>{{ message.userNumber }}</td>
+        <td>{{ message.Total_credit}}</td>
+        <td>{{ message.Ad_view.length}}</td>        
+        <td>{{ message.Credit_banner_ad}}</td>
+        <td>{{ message.Credit_image_ad}}</td>
+        <td>{{ message.Credit_video_ad}}</td>        
+        <td><a routerLink="/pages/components/show/{{message._id}}" style="color:white;">Show</a></td>
+      </tr>
+    </table>
+  </div>
+</div>  
+<!--</div>-->

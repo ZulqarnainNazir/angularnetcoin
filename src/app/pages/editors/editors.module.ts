@@ -7,6 +7,7 @@ import { UserService } from './components/ckeditor/user.service';
 import { routing }       from './editors.routing';
 import { Editors } from './editors.component';
 import { Ckeditor } from './components/ckeditor/ckeditor.component';
+import { ShowComponent } from './components/show/show.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Ckeditor } from './components/ckeditor/ckeditor.component';
   ],
   declarations: [
     Editors,
-    Ckeditor
+    Ckeditor,
+    ShowComponent
   ],
   providers: [
     UserService
